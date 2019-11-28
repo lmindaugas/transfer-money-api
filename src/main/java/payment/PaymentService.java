@@ -25,7 +25,7 @@ public class PaymentService {
         this.ctx = ctx;
     }
 
-    public void execute(Payment payment) {
+    public synchronized void persist(Payment payment) {
         JsonNode json = payment.asJson();
         Account debtorAccount = new Account(json.at("/Data/DebtorAccount"));
         Account creditorAccount = new Account(json.at("/Data/CreditorAccount"));

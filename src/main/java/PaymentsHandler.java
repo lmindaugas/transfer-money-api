@@ -58,7 +58,7 @@ public class PaymentsHandler {
                     .filter(PaymentRules::valid)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid payment payload"));
 
-                paymentService.execute(payment);
+                paymentService.persist(payment);
                 return payment.asJson();
             });
         });
@@ -111,7 +111,7 @@ public class PaymentsHandler {
                     .filter(AccountRules::valid)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid account payload"));
 
-                accountService.create(account);
+                accountService.persist(account);
                 return account.asJson();
             });
         });

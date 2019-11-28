@@ -13,7 +13,7 @@ public class AccountService {
         this.ctx = ctx;
     }
 
-    public void create(UserAccount account) {
+    public synchronized void persist(UserAccount account) {
         ctx.selectFrom(ACCOUNT)
             .where(ACCOUNT.ID.eq(account.id()))
             .fetch()
